@@ -30,7 +30,7 @@ const options = {
 
 // Tokopedia Webhook Test
 
-app.post('/listener', (req, res) => {
+app.post('/hi', (req, res) => {
   res.send(req.body.message);
 })
 
