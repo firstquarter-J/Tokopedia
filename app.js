@@ -31,26 +31,34 @@ const options = {
 // Tokopedia Webhook Test
 
 app.post('/hi', (req, res) => {
+  console.log("포스트 하이")
+  console.log(req.body.message)
   res.send(req.body.message);
 })
 
-const crypto = require('crypto')
-const bodyParser = require('body-parser')
+app.get('/hi', (req, res) => {
+  console.log("겟 하이")
+  console.log(req.body.message)
+  res.send(req.body.message);
+})
 
-app.use(bodyParser.json())
+// const crypto = require('crypto')
+// const bodyParser = require('body-parser')
 
-const YOUR_WEBHOOK_KEY = 'YOUR_SECRET'
+// app.use(bodyParser.json())
 
-app.post('/listener', (req, res) => {
-  // Encrypt with SHA-256 and Encode to hexadecimal
-  let hmac = crypto.createHmac('sha256', YOUR_WEBHOOK_KEY)
-    .update(JSON.stringify(req.body))
-    .digest('hex')
+// const YOUR_WEBHOOK_KEY = 'YOUR_SECRET'
 
-  // Compare our HMAC with your HMAC
-  if(!crypto.timingSafeEqual(Buffer.from(hmac), Buffer.from(req.get('Authorization-Hmac')))) {
-      console.log('Failed to verify!')
-      return
-  }
-  console.log('Successfully verified!')
-});
+// app.post('/listener', (req, res) => {
+//   // Encrypt with SHA-256 and Encode to hexadecimal
+//   let hmac = crypto.createHmac('sha256', YOUR_WEBHOOK_KEY)
+//     .update(JSON.stringify(req.body))
+//     .digest('hex')
+
+//   // Compare our HMAC with your HMAC
+//   if(!crypto.timingSafeEqual(Buffer.from(hmac), Buffer.from(req.get('Authorization-Hmac')))) {
+//       console.log('Failed to verify!')
+//       return
+//   }
+//   console.log('Successfully verified!')
+// });
