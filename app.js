@@ -54,15 +54,22 @@ const options = {
 app.post('/hi', (req, res) => {
   try {
     const reqBody = req.body
-    console.log("포스트 하이");
-    console.log("리퀘스트 ----------->", req.body)
-    // console.log("리스폰스", res)
+    const reqParams = req.params
+    const reqQuery = req.query
+    const reqMethods = req.methods
+    const reqUrl = req.url
+    console.error("포스트 하이!!!!!!!!!! 에러 아니야!!!!!!!!!!! 이제 뭘 해야 하지!?!?!?!?!?");
+    // console.error("리스폰스~!?", res)
 
     res.status(200).send({
       ok: true,
       // req,
       // res,
-      reqBody
+      reqBody,
+      reqParams,
+      reqQuery,
+      reqMethods,
+      reqUrl
     });
 
   } catch (err) {
@@ -70,7 +77,7 @@ app.post('/hi', (req, res) => {
 
       res.status(400).send({
         ok: false,
-        message: `${err} ㅇㅔ러 발생`
+        message: `${err} ㅇㅔ~~~~~~~~~~~~~~~~~~러 발생 =>`
       })
   }
 })
