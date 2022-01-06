@@ -4,45 +4,20 @@ const app = express()
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
 
+const cors = require("cors");
+app.use(cors({ origin: true, credentials: true }));
+
+app.set("view engine", "hbs");
+
+const data = {
+  name: "Sahy",
+}
+
 app.get('/', (req, res) => {
-    res.send('나랑 싸우자 토코피디아ㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏ')
-})
-
-// LOCAL ONLY
-// const port = 3000;
-// app.listen(port, () => {
-//     console.log(`listening at http://localhost:${port}`)
-// })
-
-// HTTPS
-app.use(express.static('public'));
-const fs = require('fs');
-const http=require("http");
-const https=require("https");
-
-const options = {
-  ca: fs.readFileSync('/etc/letsencrypt/live/firstquarter.shop/fullchain.pem'),
-  key: fs.readFileSync('/etc/letsencrypt/live/firstquarter.shop/privkey.pem'),
-  cert: fs.readFileSync('/etc/letsencrypt/live/firstquarter.shop/cert.pem')
-  };
-  http.createServer(app).listen(3000);
-  https.createServer(options, app).listen(443);
-
-// Tokopedia Webhook Test
-
-app.post('/hi', (req, res) => {
   try {
-    const { message } = req.body
-    console.log("포스트 하이")
-    console.log("리퀘스트", req)
-    console.log("리스폰스", res)
+    console.log("겟!!!!!!!!!!!!!!! ///////");
 
-    res.status(200).send({
-      ok: true,
-      req,
-      res,
-      message
-    });
+    res.render("index", data)
 
   } catch (err) {
       console.error(err);
@@ -54,18 +29,40 @@ app.post('/hi', (req, res) => {
   }
 })
 
-app.get('/hi', (req, res) => {
+// LOCAL ONLY
+const port = 3000;
+app.listen(port, () => {
+    console.log(`listening at http://localhost:${port}`)
+})
+
+// HTTPS
+// app.use(express.static('public'));
+// const fs = require('fs');
+// const http=require("http");
+// const https=require("https");
+
+// const options = {
+//   ca: fs.readFileSync('/etc/letsencrypt/live/firstquarter.shop/fullchain.pem'),
+//   key: fs.readFileSync('/etc/letsencrypt/live/firstquarter.shop/privkey.pem'),
+//   cert: fs.readFileSync('/etc/letsencrypt/live/firstquarter.shop/cert.pem')
+//   };
+//   http.createServer(app).listen(3000);
+//   https.createServer(options, app).listen(443);
+
+// Tokopedia Webhook Test
+
+app.post('/hi', (req, res) => {
   try {
-    const { message } = req.body
-    console.log("겟 하이")
-    console.log("리퀘스트", req)
-    console.log("리스폰스", res)
+    const reqBody = req.body
+    console.log("포스트 하이");
+    console.log("리퀘스트 ----------->", req.body)
+    // console.log("리스폰스", res)
 
     res.status(200).send({
       ok: true,
-      req,
-      res,
-      message
+      // req,
+      // res,
+      reqBody
     });
 
   } catch (err) {
