@@ -59,7 +59,7 @@ app.post('/hi', (req, res) => {
     const reqMethods = req.methods
     const reqUrl = req.url
     console.error("포스트 하이!!!!!!!!!! 에러 아니야!!!!!!!!!!! 이제 뭘 해야 하지!?!?!?!?!?");
-    console.log(req);
+    console.log(req.IncomingMessage);
     // console.error("리스폰스~!?", res)
 
     res.status(200).send({
