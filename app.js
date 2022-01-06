@@ -61,7 +61,7 @@ app.post('/hi', (req, res) => {
     console.error("포스트 하이!!!!!!!!!! 에러 아니야!!!!!!!!!!! 이제 뭘 해야 하지!?!?!?!?!?");
     console.log("req.body", req.body);
 
-    res.status(200).send({
+    res.send({
       ok: true,
       // req,
       // res,
