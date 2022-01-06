@@ -31,15 +31,51 @@ const options = {
 // Tokopedia Webhook Test
 
 app.post('/hi', (req, res) => {
-  console.log("포스트 하이")
-  console.log(req.body.message)
-  res.send(req.body.message);
+  try {
+    const { message } = req.body
+    console.log("포스트 하이")
+    console.log("리퀘스트", req)
+    console.log("리스폰스", res)
+
+    res.status(200).send({
+      ok: true,
+      req,
+      res,
+      message
+    });
+
+  } catch (err) {
+      console.error(err);
+
+      res.status(400).send({
+        ok: false,
+        message: `${err} ㅇㅔ러 발생`
+      })
+  }
 })
 
 app.get('/hi', (req, res) => {
-  console.log("겟 하이")
-  console.log(req.body.message)
-  res.send(req.body.message);
+  try {
+    const { message } = req.body
+    console.log("겟 하이")
+    console.log("리퀘스트", req)
+    console.log("리스폰스", res)
+
+    res.status(200).send({
+      ok: true,
+      req,
+      res,
+      message
+    });
+
+  } catch (err) {
+      console.error(err);
+
+      res.status(400).send({
+        ok: false,
+        message: `${err} ㅇㅔ러 발생`
+      })
+  }
 })
 
 // const crypto = require('crypto')
