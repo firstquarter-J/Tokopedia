@@ -83,7 +83,7 @@ app.post('/hi', (req, res) => {
 })
 
 var httpss = require('follow-redirects').https;
-var fs = require('fs');
+// var fs = require('fs');
 
 var options = {
   'method': 'GET',
