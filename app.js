@@ -82,37 +82,37 @@ app.post('/hi', (req, res) => {
   }
 })
 
-var httpss = require('follow-redirects').https;
-// var fs = require('fs');
+// var httpss = require('follow-redirects').https;
+// // var fs = require('fs');
 
-var option = {
-  'method': 'GET',
-  'hostname': 'https://fs.tokopedia.net',
-  'path': '/inventory/v1/fs/15919/product/info?sku=k8k',
-  'headers': {
-    'Authorization': 'Bearer  c:TL8xZs91TeWwS9E859-_ow'
-  },
-  'maxRedirects': 20
-};
+// var option = {
+//   'method': 'GET',
+//   'hostname': 'https://fs.tokopedia.net',
+//   'path': '/inventory/v1/fs/15919/product/info?sku=k8k',
+//   'headers': {
+//     'Authorization': 'Bearer  c:TL8xZs91TeWwS9E859-_ow'
+//   },
+//   'maxRedirects': 20
+// };
 
-var req = httpss.request(option, function (res) {
-  var chunks = [];
+// var req = httpss.request(option, function (res) {
+//   var chunks = [];
 
-  res.on("data", function (chunk) {
-    chunks.push(chunk);
-  });
+//   res.on("data", function (chunk) {
+//     chunks.push(chunk);
+//   });
 
-  res.on("end", function (chunk) {
-    var body = Buffer.concat(chunks);
-    console.log(body.toString());
-  });
+//   res.on("end", function (chunk) {
+//     var body = Buffer.concat(chunks);
+//     console.log(body.toString());
+//   });
 
-  res.on("error", function (error) {
-    console.error(error);
-  });
-});
+//   res.on("error", function (error) {
+//     console.error(error);
+//   });
+// });
 
-req.end();
+// req.end();
 
 
 // const crypto = require('crypto')
