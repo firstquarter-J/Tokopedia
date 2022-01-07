@@ -82,7 +82,7 @@ app.post('/hi', (req, res) => {
   }
 })
 
-var https = require('follow-redirects').https;
+var httpss = require('follow-redirects').https;
 var fs = require('fs');
 
 var options = {
@@ -95,7 +95,7 @@ var options = {
   'maxRedirects': 20
 };
 
-var req = https.request(options, function (res) {
+var req = httpss.request(options, function (res) {
   var chunks = [];
 
   res.on("data", function (chunk) {
