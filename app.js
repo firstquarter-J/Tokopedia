@@ -85,7 +85,7 @@ app.post('/hi', (req, res) => {
 var httpss = require('follow-redirects').https;
 // var fs = require('fs');
 
-var options = {
+var option = {
   'method': 'GET',
   'hostname': 'https://fs.tokopedia.net',
   'path': '/inventory/v1/fs/15919/product/info?sku=k8k',
@@ -95,7 +95,7 @@ var options = {
   'maxRedirects': 20
 };
 
-var req = httpss.request(options, function (res) {
+var req = httpss.request(option, function (res) {
   var chunks = [];
 
   res.on("data", function (chunk) {
