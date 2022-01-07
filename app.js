@@ -60,8 +60,7 @@ app.post('/hi', (req, res) => {
     const reqUrl = req.url
     console.error("포스트 하이!!!!!!!!!! 에러 아니야!!!!!!!!!!");
     console.log("req.body", req.body);
-    console.error("--------절--------------취--------------선---------------")
-    console.log("헤더~~~!!!!~~~~~~~~~~~~", req.headers)
+    console.error("헤더~~~!!!!~~~~~~~~~~~~~~~~~~~~~~", req.headers)
     console.error("--------절--------------취--------------선---------------")
 
     res.status(200).send({
