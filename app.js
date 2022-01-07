@@ -58,14 +58,14 @@ app.post('/hi', (req, res) => {
     const reqQuery = req.query
     const reqMethods = req.methods
     const reqUrl = req.url
-    console.error("포스트 하이!!!!!!!!!! 에러 아니야!!!!!!!!!!! 이제 뭘 해야 하지!?!?!?!?!?");
+    console.error("포스트 하이!!!!!!!!!! 에러 아니야!!!!!!!!!!");
     console.log("req.body", req.body);
+    console.error("--------절--------------취--------------선---------------")
+    console.log("헤더~~~!!!!~~~~~~~~~~~~", req.headers)
     console.error("--------절--------------취--------------선---------------")
 
     res.status(200).send({
       ok: true,
-      // req,
-      // res,
       reqBody,
       reqParams,
       reqQuery,
