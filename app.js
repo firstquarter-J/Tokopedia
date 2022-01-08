@@ -24,7 +24,7 @@ app.get('/', (req, res) => {
 
       res.status(400).send({
         ok: false,
-        message: `${err} ㅇㅔ러 발생`
+        message: `ㅇㅔ~~~~~~~~~~~~~~~~~~러 발생 => ${err}`
       })
   }
 })
@@ -59,8 +59,8 @@ app.post('/hi', (req, res) => {
     const reqMethods = req.methods
     const reqUrl = req.url
     console.error("포스트 하이!!!!!!!!!! 에러 아니야!!!!!!!!!!");
-    console.log("req.body", req.body);
-    console.log("헤더~~~!!!!~~~~~~~~~~~~~~~~~~~~~~", req.headers)
+    console.log("req.body => ", req.body);
+    console.log("req.headers => ", req.headers)
     console.error("--------절--------------취--------------선---------------")
 
     res.status(200).send({
@@ -77,7 +77,7 @@ app.post('/hi', (req, res) => {
 
       res.status(400).send({
         ok: false,
-        message: `${err} ㅇㅔ~~~~~~~~~~~~~~~~~~러 발생 =>`
+        message: `ㅇㅔ~~~~~~~~~~~~~~~~~~러 발생 => ${err}`
       })
   }
 })
