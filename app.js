@@ -15,7 +15,8 @@ const data = {
 
 app.get('/', (req, res) => {
   try {
-    console.log("겟!!!!!!!!!!!!!!! ///////");
+
+    console.log('\x1b[1;35m하잉~~~\x1b[0m', `\x1b[1;36m${Date()}\x1b[0m`);
 
     res.render("index", data)
 
@@ -32,7 +33,7 @@ app.get('/', (req, res) => {
 // LOCAL ONLY
 // const port = 3000;
 // app.listen(port, () => {
-//     console.log(`listening at http://localhost:${port}`)
+//     console.log(`\x1b[1;35mlistening at\x1b[0m \x1b[1;36mhttp://localhost:${port}\x1b[0m`)
 // })
 
 // HTTPS
@@ -47,7 +48,9 @@ const options = {
   cert: fs.readFileSync('/etc/letsencrypt/live/firstquarter.shop/cert.pem')
   };
   http.createServer(app).listen(3000);
-  https.createServer(options, app).listen(443);
+  https.createServer(options, app).listen(443, () => {
+    console.log(`\x1b[1;36m안녕 서버~?\x1b[0m`)
+  });
 
 // Tokopedia Webhook Test
 
@@ -58,10 +61,9 @@ app.post('/hi', (req, res) => {
     const reqQuery = req.query
     const reqMethods = req.methods
     const reqUrl = req.url
-    console.error("포스트 하이!!!!!!!!!! 에러 아니야!!!!!!!!!!");
-    console.log("req.body => ", req.body);
-    console.log("req.headers => ", req.headers)
-    console.error("--------절--------------취--------------선---------------")
+    console.log("\x1b[1;36mreq.body => \x1b[0m", req.body);
+    console.log("\x1b[1;33mreq.headers => \x1b[0m", req.headers);
+    console.log(`\x1b[1;31m--------절--------------취--------------선---------------\x1b[0m`)
 
     res.status(200).send({
       ok: true,
