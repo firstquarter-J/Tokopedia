@@ -36,7 +36,7 @@ app.listen(port, () => {
 })
 
 // HTTPS
-// app.use(express.static('public'));
+app.use(express.static('public'));
 // const fs = require('fs');
 // const http=require("http");
 // const https=require("https");
