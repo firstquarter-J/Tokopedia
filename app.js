@@ -13,6 +13,29 @@ const data = {
   name: "Sahy",
 }
 
+// Local HTTS or AWS Server HTTPS
+try {
+  app.use(express.static('public'));
+  const fs = require('fs');
+  const http=require("http");
+  const https=require("https");
+  const options = {
+    ca: fs.readFileSync('/etc/letsencrypt/live/firstquarter.shop/fullchain.pem'),
+    key: fs.readFileSync('/etc/letsencrypt/live/firstquarter.shop/privkey.pem'),
+    cert: fs.readFileSync('/etc/letsencrypt/live/firstquarter.shop/cert.pem')
+    };
+    http.createServer(app).listen(3000);
+    https.createServer(options, app).listen(443, () => {
+      console.log(`\x1b[1;36m안녕 서버~?\x1b[0m`)
+    });
+} catch (err) {
+  console.error(err)
+  const port = 3000;
+  app.listen(port, () => {
+      console.log(`\x1b[1;35m안녕 로컬 서버~~~\x1b[0m \x1b[1;36mhttp://localhost:${port}\x1b[0m`)
+  })
+}
+
 app.get('/', (req, res) => {
   try {
 
@@ -36,27 +59,6 @@ app.get('/', (req, res) => {
   }
 })
 
-// LOCAL ONLY
-const port = 3000;
-app.listen(port, () => {
-    console.log(`\x1b[1;35mlistening at\x1b[0m \x1b[1;36mhttp://localhost:${port}\x1b[0m`)
-})
-
-// HTTPS
-// app.use(express.static('public'));
-// const fs = require('fs');
-// const http=require("http");
-// const https=require("https");
-
-// const options = {
-//   ca: fs.readFileSync('/etc/letsencrypt/live/firstquarter.shop/fullchain.pem'),
-//   key: fs.readFileSync('/etc/letsencrypt/live/firstquarter.shop/privkey.pem'),
-//   cert: fs.readFileSync('/etc/letsencrypt/live/firstquarter.shop/cert.pem')
-//   };
-//   http.createServer(app).listen(3000);
-//   https.createServer(options, app).listen(443, () => {
-//     console.log(`\x1b[1;36m안녕 서버~?\x1b[0m`)
-//   });
 
 // Tokopedia Webhook Test
 
