@@ -16,7 +16,13 @@ const data = {
 app.get('/', (req, res) => {
   try {
 
-    console.log('\x1b[1;35m하잉~~~\x1b[0m', `\x1b[1;36m${Date()}\x1b[0m`);
+    const date = new Date(); 
+    const utcTime = date.getTime() + (date.getTimezoneOffset() * 60 * 1000); 
+    const utcTimeAddKoreaTime = 9 * 60 * 60 * 1000; 
+    const koreaTime = new Date(utcTime + utcTimeAddKoreaTime);
+    console.log(koreaTime)
+
+    console.log('\x1b[1;35m하잉~~~\x1b[0m', `\x1b[1;36m${new Date().toString()}\x1b[0m`);
 
     res.render("index", data)
 
@@ -31,26 +37,26 @@ app.get('/', (req, res) => {
 })
 
 // LOCAL ONLY
-// const port = 3000;
-// app.listen(port, () => {
-//     console.log(`\x1b[1;35mlistening at\x1b[0m \x1b[1;36mhttp://localhost:${port}\x1b[0m`)
-// })
+const port = 3000;
+app.listen(port, () => {
+    console.log(`\x1b[1;35mlistening at\x1b[0m \x1b[1;36mhttp://localhost:${port}\x1b[0m`)
+})
 
 // HTTPS
-app.use(express.static('public'));
-const fs = require('fs');
-const http=require("http");
-const https=require("https");
+// app.use(express.static('public'));
+// const fs = require('fs');
+// const http=require("http");
+// const https=require("https");
 
-const options = {
-  ca: fs.readFileSync('/etc/letsencrypt/live/firstquarter.shop/fullchain.pem'),
-  key: fs.readFileSync('/etc/letsencrypt/live/firstquarter.shop/privkey.pem'),
-  cert: fs.readFileSync('/etc/letsencrypt/live/firstquarter.shop/cert.pem')
-  };
-  http.createServer(app).listen(3000);
-  https.createServer(options, app).listen(443, () => {
-    console.log(`\x1b[1;36m안녕 서버~?\x1b[0m`)
-  });
+// const options = {
+//   ca: fs.readFileSync('/etc/letsencrypt/live/firstquarter.shop/fullchain.pem'),
+//   key: fs.readFileSync('/etc/letsencrypt/live/firstquarter.shop/privkey.pem'),
+//   cert: fs.readFileSync('/etc/letsencrypt/live/firstquarter.shop/cert.pem')
+//   };
+//   http.createServer(app).listen(3000);
+//   https.createServer(options, app).listen(443, () => {
+//     console.log(`\x1b[1;36m안녕 서버~?\x1b[0m`)
+//   });
 
 // Tokopedia Webhook Test
 
