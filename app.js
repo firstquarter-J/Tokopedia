@@ -30,24 +30,24 @@ app.get('/', (req, res) => {
 })
 
 // LOCAL ONLY
-const port = 3000;
-app.listen(port, () => {
-    console.log(`listening at http://localhost:${port}`)
-})
+// const port = 3000;
+// app.listen(port, () => {
+//     console.log(`listening at http://localhost:${port}`)
+// })
 
 // HTTPS
 app.use(express.static('public'));
-// const fs = require('fs');
-// const http=require("http");
-// const https=require("https");
+const fs = require('fs');
+const http=require("http");
+const https=require("https");
 
-// const options = {
-//   ca: fs.readFileSync('/etc/letsencrypt/live/firstquarter.shop/fullchain.pem'),
-//   key: fs.readFileSync('/etc/letsencrypt/live/firstquarter.shop/privkey.pem'),
-//   cert: fs.readFileSync('/etc/letsencrypt/live/firstquarter.shop/cert.pem')
-//   };
-//   http.createServer(app).listen(3000);
-//   https.createServer(options, app).listen(443);
+const options = {
+  ca: fs.readFileSync('/etc/letsencrypt/live/firstquarter.shop/fullchain.pem'),
+  key: fs.readFileSync('/etc/letsencrypt/live/firstquarter.shop/privkey.pem'),
+  cert: fs.readFileSync('/etc/letsencrypt/live/firstquarter.shop/cert.pem')
+  };
+  http.createServer(app).listen(3000);
+  https.createServer(options, app).listen(443);
 
 // Tokopedia Webhook Test
 
