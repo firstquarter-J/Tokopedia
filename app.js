@@ -32,8 +32,7 @@ try {
     \x1b[1;3;32m난\x1b[0m
       \x1b[1;3;36m서\x1b[0m
         \x1b[1;3;34m버\x1b[0m
-          \x1b[1;3;35m야\x1b[0m
-      `)
+          \x1b[1;3;35m야\x1b[0m`)
     });
 } catch (err) {
   console.error(err)
@@ -46,8 +45,7 @@ try {
       \x1b[1;3;36m서\x1b[0m
         \x1b[1;3;34m버\x1b[0m
           \x1b[1;3;35m야\x1b[0m
-            \x1b[1;3;36mhttp://localhost:${port}\x1b[0m
-      `)
+            \x1b[1;3;36mhttp://localhost:${port}\x1b[0m`)
   })
 }
 
