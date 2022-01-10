@@ -120,3 +120,63 @@ app.post('/hi', (req, res) => {
       })
   }
 })
+
+app.get('/hi', (req, res) => {
+  try {
+    const reqBody = req.body
+    const reqParams = req.params
+    const reqQuery = req.query
+    const reqMethods = req.methods
+    const reqUrl = req.url
+    console.log("\x1b[1;36mreq.body => \x1b[0m", req.body);
+    console.log("\x1b[1;33mreq.headers => \x1b[0m", req.headers);
+    console.log(`\x1b[1;31m--------절--------------취--------------선---------------\x1b[0m`)
+
+    res.status(200).send({
+      ok: true,
+      reqBody,
+      reqParams,
+      reqQuery,
+      reqMethods,
+      reqUrl
+    });
+
+  } catch (err) {
+      console.error(err);
+
+      res.status(400).send({
+        ok: false,
+        message: `ㅇㅔ~~~~~~~~~~~~~~~~~~러 발생 => ${err}`
+      })
+  }
+})
+
+app.put('/hi', (req, res) => {
+  try {
+    const reqBody = req.body
+    const reqParams = req.params
+    const reqQuery = req.query
+    const reqMethods = req.methods
+    const reqUrl = req.url
+    console.log("\x1b[1;36mreq.body => \x1b[0m", req.body);
+    console.log("\x1b[1;33mreq.headers => \x1b[0m", req.headers);
+    console.log(`\x1b[1;31m--------절--------------취--------------선---------------\x1b[0m`)
+
+    res.status(200).send({
+      ok: true,
+      reqBody,
+      reqParams,
+      reqQuery,
+      reqMethods,
+      reqUrl
+    });
+
+  } catch (err) {
+      console.error(err);
+
+      res.status(400).send({
+        ok: false,
+        message: `ㅇㅔ~~~~~~~~~~~~~~~~~~러 발생 => ${err}`
+      })
+  }
+})
