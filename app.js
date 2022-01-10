@@ -98,9 +98,10 @@ app.post('/hi', (req, res) => {
     const reqQuery = req.query
     const reqMethods = req.methods
     const reqUrl = req.url
+    console.log("\x1b[1;3;31m포스트!!!\x1b[0m");
     console.log("\x1b[1;36mreq.body => \x1b[0m", req.body);
     console.log("\x1b[1;33mreq.headers => \x1b[0m", req.headers);
-    console.log(`\x1b[1;31m--------절--------------취--------------선---------------\x1b[0m`)
+    console.log(`\x1b[1;31m---절취선---\x1b[0m`, `\x1b[1;36m${new Date()}\x1b[0m`);
 
     res.status(200).send({
       ok: true,
@@ -128,9 +129,10 @@ app.get('/hi', (req, res) => {
     const reqQuery = req.query
     const reqMethods = req.methods
     const reqUrl = req.url
+    console.log("\x1b[1;3;31m겟!!!\x1b[0m");
     console.log("\x1b[1;36mreq.body => \x1b[0m", req.body);
     console.log("\x1b[1;33mreq.headers => \x1b[0m", req.headers);
-    console.log(`\x1b[1;31m--------절--------------취--------------선---------------\x1b[0m`)
+    console.log(`\x1b[1;31m---절취선---\x1b[0m`, `\x1b[1;36m${new Date()}\x1b[0m`);
 
     res.status(200).send({
       ok: true,
@@ -158,9 +160,10 @@ app.put('/hi', (req, res) => {
     const reqQuery = req.query
     const reqMethods = req.methods
     const reqUrl = req.url
+    console.log("\x1b[1;3;31m풋!!!\x1b[0m");
     console.log("\x1b[1;36mreq.body => \x1b[0m", req.body);
     console.log("\x1b[1;33mreq.headers => \x1b[0m", req.headers);
-    console.log(`\x1b[1;31m--------절--------------취--------------선---------------\x1b[0m`)
+    console.log(`\x1b[1;31m---절취선---\x1b[0m`, `\x1b[1;36m${new Date()}\x1b[0m`);
 
     res.status(200).send({
       ok: true,
