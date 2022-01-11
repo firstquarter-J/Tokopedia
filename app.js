@@ -13,6 +13,74 @@ const data = {
   name: "Sahy",
 }
 
+// webhook secret
+const crypto = require('crypto')
+const bodyParser = require('body-parser')
+
+const YOUR_WEBHOOK_KEY = 'webhook_secret'
+
+app.use(bodyParser.json())
+
+// app.post('/listener', (req, res) => {
+//   // Encrypt with SHA-256 and Encode to hexadecimal
+//   let hmac = crypto.createHmac('sha256', YOUR_WEBHOOK_KEY)
+//   .update(JSON.stringify(req.body))
+//   .digest('hex')
+  
+//   // Compare our HMAC with your HMAC
+//   if(!crypto.timingSafeEqual(Buffer.from(hmac), Buffer.from(req.get('Authorization-Hmac')))) {
+//     console.log('Failed to verify!')
+//     return
+//   }
+//   console.log('Successfully verified!')
+// });
+
+// Tokopedia Webhook Test
+
+app.post('/hi', (req, res) => {
+  try {
+
+    // Encrypt with SHA-256 and Encode to hexadecimal
+    let hmac = crypto.createHmac('sha256', YOUR_WEBHOOK_KEY)
+    .update(JSON.stringify(req.body))
+    .digest('hex')
+
+    // Compare our HMAC with your HMAC
+    if(!crypto.timingSafeEqual(Buffer.from(hmac), Buffer.from(req.get('Authorization-Hmac')))) {
+        console.log('Failed to verify!')
+        return
+    }
+    console.log('Successfully verified!')
+
+    const reqBody = req.body
+    const reqParams = req.params
+    const reqQuery = req.query
+    const reqMethods = req.methods
+    const reqUrl = req.url
+    console.log("\x1b[1;3;31m포스트!!!\x1b[0m");
+    console.log("\x1b[1;36mreq.body => \x1b[0m", req.body);
+    console.log("\x1b[1;33mreq.headers => \x1b[0m", req.headers);
+    console.log(`\x1b[1;31m---절취선---\x1b[0m`, `\x1b[1;36m${new Date()}\x1b[0m`);
+
+    res.status(200).send({
+      ok: true,
+      reqBody,
+      reqParams,
+      reqQuery,
+      reqMethods,
+      reqUrl
+    });
+
+  } catch (err) {
+      console.error(err);
+
+      res.status(400).send({
+        ok: false,
+        message: `ㅇㅔ~~~~~~~~~~~~~~~~~~러 발생 => ${err}`
+      })
+  }
+})
+
 // Local HTTP or AWS Server HTTPS
 try {
   app.use(express.static('public'));
@@ -49,6 +117,19 @@ try {
             \x1b[1;3;36mhttp://localhost:${port}\x1b[0m`)
   })
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 app.get('/', (req, res) => {
   try {
@@ -90,38 +171,7 @@ app.get('/', (req, res) => {
 })
 
 
-// Tokopedia Webhook Test
 
-app.post('/hi', (req, res) => {
-  try {
-    const reqBody = req.body
-    const reqParams = req.params
-    const reqQuery = req.query
-    const reqMethods = req.methods
-    const reqUrl = req.url
-    console.log("\x1b[1;3;31m포스트!!!\x1b[0m");
-    console.log("\x1b[1;36mreq.body => \x1b[0m", req.body);
-    console.log("\x1b[1;33mreq.headers => \x1b[0m", req.headers);
-    console.log(`\x1b[1;31m---절취선---\x1b[0m`, `\x1b[1;36m${new Date()}\x1b[0m`);
-
-    res.status(200).send({
-      ok: true,
-      reqBody,
-      reqParams,
-      reqQuery,
-      reqMethods,
-      reqUrl
-    });
-
-  } catch (err) {
-      console.error(err);
-
-      res.status(400).send({
-        ok: false,
-        message: `ㅇㅔ~~~~~~~~~~~~~~~~~~러 발생 => ${err}`
-      })
-  }
-})
 
 app.get('/hi', (req, res) => {
   try {
