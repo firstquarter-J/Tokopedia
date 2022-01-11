@@ -34,18 +34,16 @@ app.post('/hi', (req, res) => {
     console.log("\x1b[1;36mreq.body => \x1b[0m", req.body);
     console.log("\x1b[1;33mreq.headers => \x1b[0m", req.headers);
     console.log(`\x1b[1;31m---절취선---\x1b[0m`, `\x1b[1;36m${new Date()}\x1b[0m`);
-
-    // console.log(req.headers.authorization-Hmac) 미쳤나!!! 이거 없잖아????
-    // console.log(req.headers.authorization-hmac)
-    console.log("이거 니네꺼=====> ", req.get('Authorization-hmac'))
-    console.log("이거 니네꺼=====> ", req.get('Authorization-Hmac'))
-
+    
     // Encrypt with SHA-256 and Encode to hexadecimal
     let hmac = crypto.createHmac('sha256', YOUR_WEBHOOK_KEY)
     .update(JSON.stringify(req.body))
     .digest('hex')
     console.log('이거 내꺼!!!==========>', hmac)
-
+    
+    console.log("이거 니네꺼=====> ", req.get('Authorization-Hmac'))
+    console.log("이거 니네꺼=====> ", req.get('Authorization-hmac'))
+    
     // Compare our HMAC with your HMAC
     if(!crypto.timingSafeEqual(Buffer.from(hmac), Buffer.from(req.get('Authorization-Hmac')))) {
         console.log('\x1b[1;3;31m---Failed to verify!---\x1b[0m')
