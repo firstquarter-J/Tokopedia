@@ -17,7 +17,7 @@ const data = {
 const crypto = require('crypto')
 const bodyParser = require('body-parser')
 
-const YOUR_WEBHOOK_KEY = 'webhook_secret'
+const YOUR_WEBHOOK_KEY = "webhook_secret"
 
 app.use(bodyParser.json())
 
@@ -39,19 +39,6 @@ app.use(bodyParser.json())
 
 app.post('/hi', (req, res) => {
   try {
-
-    // Encrypt with SHA-256 and Encode to hexadecimal
-    let hmac = crypto.createHmac('sha256', YOUR_WEBHOOK_KEY)
-    .update(JSON.stringify(req.body))
-    .digest('hex')
-
-    // Compare our HMAC with your HMAC
-    if(!crypto.timingSafeEqual(Buffer.from(hmac), Buffer.from(req.get('Authorization-Hmac')))) {
-        console.log('Failed to verify!')
-        return
-    }
-    console.log('Successfully verified!')
-
     const reqBody = req.body
     const reqParams = req.params
     const reqQuery = req.query
@@ -61,6 +48,19 @@ app.post('/hi', (req, res) => {
     console.log("\x1b[1;36mreq.body => \x1b[0m", req.body);
     console.log("\x1b[1;33mreq.headers => \x1b[0m", req.headers);
     console.log(`\x1b[1;31m---절취선---\x1b[0m`, `\x1b[1;36m${new Date()}\x1b[0m`);
+
+    // Encrypt with SHA-256 and Encode to hexadecimal
+    let hmac = crypto.createHmac('sha256', YOUR_WEBHOOK_KEY)
+    .update(JSON.stringify(req.body))
+    .digest('hex')
+
+    // Compare our HMAC with your HMAC
+    if(!crypto.timingSafeEqual(Buffer.from(hmac), Buffer.from(req.get('Authorization-Hmac')))) {
+        console.log('\x1b[1;3;31m---Failed to verify!---\x1b[0m')
+        return
+    }
+    console.log('\x1b[1;3;36m---Successfully verified!---\x1b[0m')
+
 
     res.status(200).send({
       ok: true,
@@ -118,19 +118,6 @@ try {
   })
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 app.get('/', (req, res) => {
   try {
     console.log('\x1b[1;3;31m하\x1b[0m');
@@ -169,6 +156,20 @@ app.get('/', (req, res) => {
       })
   }
 })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
