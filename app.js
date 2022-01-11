@@ -17,7 +17,7 @@ const data = {
 const crypto = require('crypto')
 const bodyParser = require('body-parser')
 
-const YOUR_WEBHOOK_KEY = "webhook_secret"
+const YOUR_WEBHOOK_KEY = "Codebrick"
 
 app.use(bodyParser.json())
 
@@ -37,13 +37,14 @@ app.post('/hi', (req, res) => {
 
     // console.log(req.headers.authorization-Hmac) 미쳤나!!! 이거 없잖아????
     // console.log(req.headers.authorization-hmac)
-    console.log(req.get('Authorization-hmac'))
-    console.log(req.get('Authorization-Hmac'))
+    console.log("이거 니네꺼=====> ", req.get('Authorization-hmac'))
+    console.log("이거 니네꺼=====> ", req.get('Authorization-Hmac'))
 
     // Encrypt with SHA-256 and Encode to hexadecimal
     let hmac = crypto.createHmac('sha256', YOUR_WEBHOOK_KEY)
     .update(JSON.stringify(req.body))
     .digest('hex')
+    console.log('이거 내꺼!!!==========>', hmac)
 
     // Compare our HMAC with your HMAC
     if(!crypto.timingSafeEqual(Buffer.from(hmac), Buffer.from(req.get('Authorization-Hmac')))) {
