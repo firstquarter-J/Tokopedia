@@ -35,7 +35,7 @@ app.post('/hi', (req, res) => {
     console.log("\x1b[1;33mreq.headers => \x1b[0m", req.headers);
     console.log(`\x1b[1;31m---절취선---\x1b[0m`, `\x1b[1;36m${new Date()}\x1b[0m`);
 
-    console.log(req.headers.authorization-Hmac)
+    // console.log(req.headers.authorization-Hmac) 미쳤나!!! 이거 없잖아????
     console.log(req.headers.authorization-hmac)
     console.log(req.get('Authorization-Hmac'))
     console.log(req.get('Authorization-hmac'))
