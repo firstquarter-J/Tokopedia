@@ -21,20 +21,6 @@ const YOUR_WEBHOOK_KEY = "webhook_secret"
 
 app.use(bodyParser.json())
 
-// app.post('/listener', (req, res) => {
-//   // Encrypt with SHA-256 and Encode to hexadecimal
-//   let hmac = crypto.createHmac('sha256', YOUR_WEBHOOK_KEY)
-//   .update(JSON.stringify(req.body))
-//   .digest('hex')
-  
-//   // Compare our HMAC with your HMAC
-//   if(!crypto.timingSafeEqual(Buffer.from(hmac), Buffer.from(req.get('Authorization-Hmac')))) {
-//     console.log('Failed to verify!')
-//     return
-//   }
-//   console.log('Successfully verified!')
-// });
-
 // Tokopedia Webhook Test
 
 app.post('/hi', (req, res) => {
@@ -48,6 +34,11 @@ app.post('/hi', (req, res) => {
     console.log("\x1b[1;36mreq.body => \x1b[0m", req.body);
     console.log("\x1b[1;33mreq.headers => \x1b[0m", req.headers);
     console.log(`\x1b[1;31m---절취선---\x1b[0m`, `\x1b[1;36m${new Date()}\x1b[0m`);
+
+    console.log(req.headers.authorization-Hmac)
+    console.log(req.headers.authorization-hmac)
+    console.log(req.get('Authorization-Hmac'))
+    console.log(req.get('Authorization-hmac'))
 
     // Encrypt with SHA-256 and Encode to hexadecimal
     let hmac = crypto.createHmac('sha256', YOUR_WEBHOOK_KEY)
