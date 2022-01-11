@@ -14,40 +14,41 @@ const data = {
 }
 
 // Local HTTP or AWS Server HTTPS
-// try {
-//   app.use(express.static('public'));
-//   const fs = require('fs');
-//   const http=require("http");
-//   const https=require("https");
-//   const options = {
-//     ca: fs.readFileSync('/etc/letsencrypt/live/firstquarter.shop/fullchain.pem'),
-//     key: fs.readFileSync('/etc/letsencrypt/live/firstquarter.shop/privkey.pem'),
-//     cert: fs.readFileSync('/etc/letsencrypt/live/firstquarter.shop/cert.pem')
-//     };
-//     http.createServer(app).listen(3000);
-//     https.createServer(options, app).listen(443, () => {
-//       console.log(
-//         `\x1b[1;3;31m안
-//   \x1b[0m\x1b[1;3;33m녕\x1b[0m
-//     \x1b[1;3;32m난\x1b[0m
-//       \x1b[1;3;36m서\x1b[0m
-//         \x1b[1;3;34m버\x1b[0m
-//           \x1b[1;3;35m야\x1b[0m`)
-//     });
-// } catch (err) {
-//   console.error(err)
-// }
-const port = 3000;
-app.listen(port, () => {
-    console.log(
-      `\x1b[1;3;31m안
-\x1b[0m\x1b[1;3;33m녕\x1b[0m
-  \x1b[1;3;32m난\x1b[0m
-    \x1b[1;3;36m서\x1b[0m
-      \x1b[1;3;34m버\x1b[0m
-        \x1b[1;3;35m야\x1b[0m
-          \x1b[1;3;36mhttp://localhost:${port}\x1b[0m`)
-})
+try {
+  app.use(express.static('public'));
+  const fs = require('fs');
+  const http=require("http");
+  const https=require("https");
+  const options = {
+    ca: fs.readFileSync('/etc/letsencrypt/live/firstquarter.shop/fullchain.pem'),
+    key: fs.readFileSync('/etc/letsencrypt/live/firstquarter.shop/privkey.pem'),
+    cert: fs.readFileSync('/etc/letsencrypt/live/firstquarter.shop/cert.pem')
+    };
+    http.createServer(app).listen(3000);
+    https.createServer(options, app).listen(443, () => {
+      console.log(
+        `\x1b[1;3;31m안
+  \x1b[0m\x1b[1;3;33m녕\x1b[0m
+    \x1b[1;3;32m난\x1b[0m
+      \x1b[1;3;36m서\x1b[0m
+        \x1b[1;3;34m버\x1b[0m
+          \x1b[1;3;35m야\x1b[0m`)
+    });
+} catch (err) {
+  console.error(`ㅇ ㅔ  ㄹ ㅓ  ! => ${err}`)
+
+  const port = 3000;
+  app.listen(port, () => {
+      console.log(
+        `\x1b[1;3;31m안
+  \x1b[0m\x1b[1;3;33m녕\x1b[0m
+    \x1b[1;3;32m난\x1b[0m
+      \x1b[1;3;36m서\x1b[0m
+        \x1b[1;3;34m버\x1b[0m
+          \x1b[1;3;35m야\x1b[0m
+            \x1b[1;3;36mhttp://localhost:${port}\x1b[0m`)
+  })
+}
 
 app.get('/', (req, res) => {
   try {
