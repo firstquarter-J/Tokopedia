@@ -43,14 +43,15 @@ app.post('/hi', (req, res) => {
     
     console.log("이거 니네꺼=====> ", req.get('Authorization-Hmac'))
     console.log("이거 니네꺼=====> ", req.get('Authorization-hmac'))
-    
+    console.log("이거 니네꺼=====> ", Buffer.from(hmac))
+    console.log("이거 니네꺼=====> ", Buffer.from(req.get('Authorization-Hmac')))
+
     // Compare our HMAC with your HMAC
     if(!crypto.timingSafeEqual(Buffer.from(hmac), Buffer.from(req.get('Authorization-Hmac')))) {
         console.log('\x1b[1;3;31m---Failed to verify!---\x1b[0m')
         return
     }
     console.log('\x1b[1;3;36m---Successfully verified!---\x1b[0m')
-
 
     res.status(200).send({
       ok: true,
