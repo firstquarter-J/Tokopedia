@@ -41,10 +41,8 @@ app.post('/hi', (req, res) => {
     .digest('hex')
     console.log('이거 내꺼!!!==========>', hmac)
     
-    console.log("이거 니네꺼=====> ", hmac===req.get('Authorization-Hmac'))
+    console.log("이거 니네꺼=====> ", hmac)
     console.log("이거 니네꺼=====> ", req.get('Authorization-hmac'))
-    // console.log("이거 니네꺼=====> ", Buffer.from(hmac))
-    // console.log("이거 니네꺼=====> ", Buffer.from(req.get('Authorization-Hmac')))
 
     // Compare our HMAC with your HMAC
     if(!crypto.timingSafeEqual(Buffer.from(hmac), Buffer.from(req.get('Authorization-Hmac')))) {
