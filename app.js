@@ -41,7 +41,7 @@ app.post('/hi', (req, res) => {
     .digest('hex')
     console.log('이거 내꺼!!!==========>', hmac)
     
-    console.log("이거 니네꺼=====> ", hmac)
+    console.log("이거 니네꺼=====> ", req.headers)
     console.log("이거 니네꺼=====> ", req.get('Authorization-hmac'))
 
     // Compare our HMAC with your HMAC
